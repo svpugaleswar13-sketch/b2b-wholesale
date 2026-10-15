@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lotswap – Wholesale lots, buyer to buyer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="logo" href="#top"><i></i>Lotswap</a>
+  <nav><a href="#market">Browse lots</a><a href="#how">How it works</a><a class="btn" href="#sell">Post a lot</a></nav>
+</div></header>
+
+<main id="top">
+<div class="wrap hero">
+  <div>
+    <h1>Buy wholesale from other buyers.</h1>
+    <p class="lead">Retailers and resellers list surplus pallets, overbought cases and bulk lots. You get below-supplier prices. They get stock moving.</p>
+    <form class="search" id="heroSearch" role="search">
+      <input id="q" type="search" placeholder="Search lots, e.g. headphones, tea, denim" aria-label="Search lots">
+      <button class="btn" type="submit">Search</button>
+    </form>
+    <div class="stats">
+      <div><strong>2,400+</strong>verified buyers</div>
+      <div><strong>31%</strong>average saving vs. supplier</div>
+      <div><strong>48 hrs</strong>typical time to ship</div>
+    </div>
+  </div>
+  <aside class="manifest" aria-label="Recently sold lots">
+    <div class="top"><span>Just sold</span><span>Today</span></div>
+    <ul>
+      <li><span>120 × Bluetooth speakers</span><b>$2,340</b></li>
+      <li><span>1 pallet organic oat milk</span><b>$1,180</b></li>
+      <li><span>300 × cotton tees, mixed</span><b>$1,650</b></li>
+      <li><span>60 × ceramic planters</span><b>$720</b></li>
+    </ul>
+  </aside>
+</div>
+
+<section id="market" style="padding-top:16px"><div class="wrap">
+  <div class="head"><h2>Open lots</h2><span id="count" style="color:var(--muted)"></span></div>
+  <div class="controls" id="chips" role="group" aria-label="Filter by category"></div>
+  <div class="controls" style="margin-top:-8px">
+    <label for="sort" style="margin:0;align-self:center">Sort by</label>
+    <select id="sort" style="margin-left:0">
+      <option value="new">Newest</option><option value="low">Lowest unit price</option><option value="save">Biggest saving</option><option value="moq">Smallest minimum order</option>
+    </select>
+  </div>
+  <div class="grid" id="grid" aria-live="polite"></div>
+</div></section>
+
+<section class="band" id="how"><div class="wrap">
+  <div class="head"><h2>How it works</h2></div>
+  <div class="steps">
+    <div class="step"><h3>List your extra stock</h3><p>Add the quantity, unit price and minimum order. Lots go live after a quick seller check.</p></div>
+    <div class="step"><h3>Buyers make offers</h3><p>Verified buyers bid on the full lot or on a set quantity. Accept, counter or decline.</p></div>
+    <div class="step"><h3>Pay into escrow, then ship</h3><p>Funds are held until the buyer confirms delivery, so both sides are covered.</p></div>
+  </div>
+</div></section>
+
+<section id="sell"><div class="wrap">
+  <div class="head"><h2>Post a lot</h2></div>
+  <form class="form" id="lotForm">
+    <div class="full"><label for="f-title">Lot title</label><input id="f-title" required maxlength="60" placeholder="e.g. 200 × stainless water bottles"></div>
+    <div><label for="f-cat">Category</label><select id="f-cat"></select></div>
+    <div><label for="f-loc">Location</label><input id="f-loc" required placeholder="City, State"></div>
+    <div><label for="f-price">Price per unit ($)</label><input id="f-price" type="number" min="0.01" step="0.01" required></div>
+    <div><label for="f-retail">Supplier price per unit ($)</label><input id="f-retail" type="number" min="0.01" step="0.01" required></div>
+    <div><label for="f-qty">Units available</label><input id="f-qty" type="number" min="1" required></div>
+    <div><label for="f-moq">Minimum order (units)</label><input id="f-moq" type="number" min="1" required></div>
+    <div class="full"><button class="btn" type="submit">Publish lot</button></div>
+    <p class="note full">This is a demo: lots you publish appear in the list above for this visit only.</p>
+  </form>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Lotswap. Buyer-to-buyer wholesale.</span><span>Business buyers only. Resale certificate required.</span></div></footer>
+
+<dialog id="dlg">
+  <form method="dialog" id="offerForm">
+    <h3 id="dTitle"></h3>
+    <p id="dSub" style="margin:0 0 14px;color:var(--muted)"></p>
+    <label for="oQty">Units you want</label>
+    <input id="oQty" type="number" required>
+    <p id="oTotal" style="font-weight:600;margin:12px 0 0"></p>
+    <div class="row"><button class="btn ghost" value="cancel" formnovalidate>Cancel</button><button class="btn" value="ok" id="oSend">Send offer</button></div>
+  </form>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
